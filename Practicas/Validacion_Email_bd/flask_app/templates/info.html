@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+    
+{% block title %} All Email {% endblock %}
+{% block content %}
+
+<h1>All Emails</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Email:</th>
+        <th scope="col">Created</th>
+        <th scope="col">Update:</th>
+        <th scope="col">Option:</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.email }}</td>
+            <td>{{ user.created_at }}</td>
+            <td>{{ user.updated_at }}</td>
+            <td><a href="/user/delete/{{ user.id }}">Delete</a> </td> 
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+

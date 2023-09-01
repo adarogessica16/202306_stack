@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %} Sesion Iniciada {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Bienvenido {{session.user.name}} {{session.user.last_name}}</h1>
+    <p>Aqui deberia haber algo divertido...</p>
+
+    <a href="/salir" class="btn btn-primary">Cerrar Sesión</a>
+
+</div>
+{% endblock %}
