@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} RECIPES {% endblock %}
+
+{% block content %}
+<div class="container">
+    <!--Barra de navegacion -->
+    <nav class="navbar" style="background-color: #e3f2fd;">
+        <h1>Welcome {{session.user.name}}</h1>
+        <div class="container-fluid">
+            <a class="nav-link" aria-current="page" href="/recipes">+ CREATE</a>
+            <a class="nav-link" aria-current="page" href="/salir">Logout</a>
+        </div>
+    </nav>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>ALL POSTED RECIPES</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Under</th>
+                        <th scope="col">Posted by</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recipe in recipes %}
+                    <tr>
+                        <td>{{ recipe.name }}</td>
+                        <td>{{ recipe.time_preparation }}</td>
+                        <td>{{ recipe.creator_name}}</td>
+                        <td>
+                            <a href="/recipe/{{ recipe.id }}">show</a>
+                            {% if recipe.user_id == session.user.id %}
+                            <a href="/recipe/edit/{{ recipe.id }}">Edit</a> |
+                            <a href="/recipe/delete/{{ recipe.id }}">Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}
